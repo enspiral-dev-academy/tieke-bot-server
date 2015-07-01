@@ -91,8 +91,8 @@ description:
   causes bot with specified id to mine from landscape server at specified coordinates. This has an energy cost equal to sqrt(x^2 + y^2). If energy cost exceeds energy of bot, nothing is mined, and the bot dies and is removed from the database. Otherwise, bot's energy is decremented, bot's experience is incremented, and the number of minerals it has mined are added to the stockpile.
 data:
   {
-    "x" : <between 1 - 100>,
-    "y" : <between 1 - 100>
+    "x" : <between 1 - 10>,
+    "y" : <between 1 - 10>
   }
 response:
   {
@@ -112,8 +112,8 @@ description:
   causes bot with specified id to harvest from landscape server at specified coordinates. This has an energy cost equal to sqrt(x^2 + y^2). If energy cost exceeds energy of bot, nothing is harvested, and the bot dies and is removed from the database. Otherwise, bot's energy is decremented, bot's experience is incremented, and the amount of food it has harvested is added to the stockpile.
 data:
   {
-    "x" : <between 1 - 100>,
-    "y" : <between 1 - 100>
+    "x" : <between 1 - 10>,
+    "y" : <between 1 - 10>
   }
 response:
   {
