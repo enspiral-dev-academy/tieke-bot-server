@@ -19,7 +19,12 @@ end
 post '/stockpile' do
   Stockpile.destroy_all
   stockpile = Stockpile.create()
-  Bot.all.each {|bot| bot.stockpile_id = stockpile.id} unless Bot.all.empty?
+  unless Bot.all.empty?
+    Bot.all.each do |bot|
+      bot.stockpile_id = stockpile.id
+      bot.save
+    end
+  end
   json stockpile
 end
 
