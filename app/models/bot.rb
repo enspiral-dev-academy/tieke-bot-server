@@ -1,4 +1,5 @@
 require 'httparty'
+require 'logger'
 
 class Bot < ActiveRecord::Base
   belongs_to :stockpile

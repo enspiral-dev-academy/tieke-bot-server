@@ -29,14 +29,14 @@ post '/stockpile' do
 end
 
 post '/bots/:id/mine' do
-  bot = Bot.find(params[:id])
-  bot.mine(params[:x], params[:y])
+  bot = Bot.find(params[:id].to_i)
+  bot.mine(params[:x].to_i, params[:y].to_i)
   json bot
 end
 
 post '/bots/:id/harvest' do
-  bot = Bot.find(params[:id])
-  bot.harvest(params[:x], params[:y])
+  bot = Bot.find(params[:id].to_i)
+  bot.harvest(params[:x].to_i, params[:y].to_i)
   json bot
 end
 
