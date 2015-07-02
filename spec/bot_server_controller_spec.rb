@@ -5,6 +5,11 @@ describe "BotServerController" do
 let (:stockpile) { Stockpile.create(mineral_count: 200, food_count: 200) }
 let (:bot) { Bot.create(stockpile_id: @stockpile.id) }
 
+before do
+  Bot.destroy_all
+  Stockpile.destroy_all
+end
+
   describe "GET '/'" do
     it "returns status code 200" do
       get '/'
@@ -32,6 +37,15 @@ let (:bot) { Bot.create(stockpile_id: @stockpile.id) }
       post "/bots/#{@bot.id}/feed", {"food_amount" => 5}
       @bot = Bot.find(@bot.id)
       expect(last_response.body).to eq(@bot.to_json)
+    end
+  end
+
+  describe "POST '/bots'" do
+    it "returns the newly created bot and stockpile info as json" do
+      @stockpile = stockpile
+      post '/bots'
+      @bot = Bot.all
+      expect(last_response.body).to eq([@bot, @stockpile].map { |js| JSON.parse(js.to_json) })
     end
   end
 

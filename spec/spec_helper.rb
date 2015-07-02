@@ -12,6 +12,7 @@ require 'shoulda-matchers'
 require 'rack/test'
 require 'capybara'
 require 'capybara/rspec'
+require 'sinatra/json'
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods

@@ -3,7 +3,6 @@ require 'httparty'
 class Bot < ActiveRecord::Base
   belongs_to :stockpile
 
-  #when is a stockpile being initiated?
   after_create do
     self.stockpile.mineral_count -= 8
   end

@@ -7,9 +7,9 @@ get '/bots/:id' do
 end
 
 post '/bots' do
-  bot = Bot.create()
-  stockpile = current_stockpile
-  json [bot, stockpile].map { |js| JSON[js] }
+  stockpile = Stockpile.first
+  bot = Bot.create(stockpile_id: stockpile.id)
+  [bot, stockpile].map { |js| json js }
 end
 
 get '/stockpile' do
@@ -18,23 +18,24 @@ end
 
 post '/stockpile' do
   stockpile = Stockpile.create()
-  session[:stockpile_id] = stockpile.id
+  json stockpile
 end
 
 post '/bots/:id/mine' do
   bot = Bot.find(params[:id])
-  bot.mine(params[:x], params[:y])
+  bot.mine(params[:x].to_i, params[:y].to_i)
   json bot
 end
 
 post '/bots/:id/harvest' do
   bot = Bot.find(params[:id])
-  bot.harvest(params[:x], params[:y])
+  bot.harvest(params[:x].to_i, params[:y].to_i)
   json bot
 end
 
 post '/bots/:id/feed' do
   bot = Bot.find(params[:id])
+  stockpile = bot.stockpile
   bot.eat(params[:food_amount].to_f)
-  json bot
+  [bot, stockpile].map { |js| json js }
 end
