@@ -2,6 +2,9 @@ class Bot < ActiveRecord::Base
   belongs_to :stockpile
 
   #when is a stockpile being initiated?
+  after_create do
+    self.stockpile.mineral_count -= 8
+  end
 
   def harvest(x, y)
       decrement_energy_level(x, y)
@@ -40,12 +43,12 @@ class Bot < ActiveRecord::Base
   end
 
   def increment_m_xp(minerals)
-    self.mining_xp += (0.1 * minerals).floor
+    self.mining_xp += (0.1 * minerals).ceil
     self.save
   end
 
   def increment_h_xp(food)
-    self.harvest_xp += (0.1 * food).floor
+    self.harvesting_xp += (0.1 * food).ceil
     self.save
   end
 
