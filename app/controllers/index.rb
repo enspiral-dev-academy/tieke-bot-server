@@ -44,5 +44,5 @@ post '/bots/:id/feed' do
   bot = Bot.find(params[:id])
   stockpile = Stockpile.first
   bot.eat(params[:food_amount].to_f)
-  [bot, stockpile].map { |js| json js }
+  json [bot, stockpile]
 end
