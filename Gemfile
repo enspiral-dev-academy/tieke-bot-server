@@ -16,6 +16,8 @@ gem 'rake'
 
 gem 'shotgun'
 
+gem 'httparty'
+
 gem "sinatra-cross_origin", "~> 0.3.1"
 
 group :test do

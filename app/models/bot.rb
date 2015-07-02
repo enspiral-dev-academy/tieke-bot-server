@@ -1,3 +1,5 @@
+require 'httparty'
+
 class Bot < ActiveRecord::Base
   belongs_to :stockpile
 
@@ -9,10 +11,10 @@ class Bot < ActiveRecord::Base
   def harvest(x, y)
       decrement_energy_level(x, y)
     if x.between?(1,10) && y.between?(1,10) && self.alive?
-      #food_amount = call landscape server with coords & bot harvest xp
-      increment_food_harvested(food_amount)
-      add_to_stockpile(food_count, food_amount)
-      increment_h_xp(food_amount)
+      response = HTTParty.get('https://tieke-landscape-server.herokuapp.com/harvest')
+      increment_food_harvested(response["food_harvested"])
+      add_to_stockpile(food_count, response["food_harvested"])
+      increment_h_xp(response["food_harvested"])
       increment_distance_travelled(x, y)
     end
   end
@@ -20,10 +22,10 @@ class Bot < ActiveRecord::Base
   def mine(x, y)
       decrement_energy_level(x, y)
     if x.between?(1,10) && y.between?(1,10) && self.alive?
-      #mineral_amount = call landscape server with coords & bot mining xp
-      increment_minerals_mined(mineral_amount)
-      add_to_stockpile(mineral_count, mineral_amount)
-      increment_m_xp(mineral_amount)
+      response = HTTParty.get('https://tieke-landscape-server.herokuapp.com/mine')
+      increment_minerals_mined(response["minerals_mined"])
+      add_to_stockpile(mineral_count, response["minerals_mined"])
+      increment_m_xp(response["minerals_mined"])
       increment_distance_travelled(x, y)
     end
   end
