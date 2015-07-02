@@ -19,6 +19,7 @@ end
 post '/stockpile' do
   Stockpile.destroy_all
   stockpile = Stockpile.create()
+  Bot.all.each {|bot| bot.stockpile_id = stockpile.id} unless Bot.all.empty?
   json stockpile
 end
 
@@ -36,7 +37,7 @@ end
 
 post '/bots/:id/feed' do
   bot = Bot.find(params[:id])
-  stockpile = bot.stockpile
+  stockpile = Stockpile.first
   bot.eat(params[:food_amount].to_f)
   [bot, stockpile].map { |js| json js }
 end
