@@ -60,14 +60,19 @@ POST '/bots'
   description:
     creates a new bot. has a set mineral cost of ____.
   response:
+    [ {
+      "id" : __,
+      "energy" : __,
+      "mining_xp" : __,
+      "harvesting_xp" : __,
+      ...
+    },
     {
-      "bot_id" : __,
-      "bot_energy" : __,
-      "bot_mining_xp" : __,
-      "bot_harvesting_xp" : __,
-      "mineral_cost" : __,
-      "stockpile_mineral_count" : __
-    }
+      "id : __,
+      "mineral_count" : __,
+      "food_count" : __,
+      ...
+    } ]
 ```
 
 You will build a GET '/stockpile' endpoint that returns information about the stockpile. It might look like this:
