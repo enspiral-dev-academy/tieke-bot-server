@@ -14,7 +14,7 @@ class Bot < ActiveRecord::Base
       response = HTTParty.post("https://tieke-landscape-server.herokuapp.com/harvest?x=#{x}&y=#{y}&bot_harvesting_xp=#{self.harvesting_xp}")
       response = JSON.parse(response)
       increment_food_harvested(response["food_harvested"])
-      add_to_stockpile(food_count, response["food_harvested"])
+      add_to_stockpile("food_count", response["food_harvested"])
       increment_h_xp(response["food_harvested"])
       increment_distance_travelled(x, y)
     end
@@ -28,7 +28,7 @@ class Bot < ActiveRecord::Base
       p "***************************************************"
       p response = JSON.parse(response)
       increment_minerals_mined(response["minerals_mined"])
-      add_to_stockpile(mineral_count, response["minerals_mined"])
+      add_to_stockpile("mineral_count", response["minerals_mined"])
       increment_m_xp(response["minerals_mined"])
       increment_distance_travelled(x, y)
     end
