@@ -25,7 +25,17 @@ let (:bot) { Bot.create(stockpile_id: @stockpile.id) }
     end
   end
 
+  describe "POST '/bots/:id/feed'" do
+    it "returns the bot with increased energy level as json" do
+      @stockpile = stockpile
+      @bot = bot
+      post "/bots/#{@bot.id}/feed", {"food_amount" => 5}
+      @bot = Bot.find(@bot.id)
+      expect(last_response.body).to eq(@bot.to_json)
+    end
   end
+
+end
 
 
 end

@@ -35,6 +35,6 @@ end
 
 post '/bots/:id/feed' do
   bot = Bot.find(params[:id])
-  bot.eat(params[:food_amount])
+  bot.eat(params[:food_amount].to_f)
   json bot
 end
