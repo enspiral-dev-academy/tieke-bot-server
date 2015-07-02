@@ -1,3 +1,8 @@
+
+get '/' do
+  session[:stockpile_id] ||= Stockpile.last.id
+end
+
 get '/bots' do
   json Bot.all
 end
