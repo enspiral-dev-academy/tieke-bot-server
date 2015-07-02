@@ -30,13 +30,13 @@ end
 
 post '/bots/:id/mine' do
   bot = Bot.find(params[:id])
-  bot.mine(params[:x].to_i, params[:y].to_i)
+  bot.mine(params[:x], params[:y])
   json bot
 end
 
 post '/bots/:id/harvest' do
   bot = Bot.find(params[:id])
-  bot.harvest(params[:x].to_i, params[:y].to_i)
+  bot.harvest(params[:x], params[:y])
   json bot
 end
 
