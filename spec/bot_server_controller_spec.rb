@@ -45,8 +45,7 @@ end
       @stockpile = stockpile
       post '/bots'
       @bot = Bot.last
-      expect(last_response.body).to eq([@bot, @stockpile].map { |js| JSON.parse(js.to_json) })
-      # expect(last_response.body).to eq([@bot, @stockpile].to_json)
+      expect(last_response.body).to eq([@bot, @stockpile].to_json)
     end
   end
 
