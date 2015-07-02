@@ -1,3 +1,4 @@
+enable :sessions
 
 get '/' do
   session[:stockpile_id] ||= Stockpile.last.id
