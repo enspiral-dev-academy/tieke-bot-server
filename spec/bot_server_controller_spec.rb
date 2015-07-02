@@ -44,8 +44,9 @@ end
     it "returns the newly created bot and stockpile info as json" do
       @stockpile = stockpile
       post '/bots'
-      @bot = Bot.all
+      @bot = Bot.last
       expect(last_response.body).to eq([@bot, @stockpile].map { |js| JSON.parse(js.to_json) })
+      # expect(last_response.body).to eq([@bot, @stockpile].to_json)
     end
   end
 

@@ -9,7 +9,8 @@ end
 post '/bots' do
   stockpile = Stockpile.first
   bot = Bot.create(stockpile_id: stockpile.id)
-  [bot, stockpile].map { |js| json js }
+  # [bot, stockpile].map { |js| json js }
+  json [bot, stockpile]
 end
 
 get '/stockpile' do
