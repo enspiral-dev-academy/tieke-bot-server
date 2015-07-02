@@ -1,9 +1,3 @@
-enable :sessions
-
-get '/' do
-  session[:stockpile_id] ||= Stockpile.last.id
-end
-
 get '/bots' do
   json Bot.all
 end
@@ -19,7 +13,7 @@ post '/bots' do
 end
 
 get '/stockpile' do
-  json current_stockpile
+  json Stockpile.first
 end
 
 post '/stockpile' do
@@ -43,8 +37,4 @@ post '/bots/:id/feed' do
   bot = Bot.find(params[:id])
   bot.eat(data["food_amount"])
   json bot
-end
-
-def current_stockpile
-  Stockpile.find(session[:stockpile_id])
 end
