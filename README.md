@@ -88,6 +88,19 @@ response:
   }
 ```
 
+You should probably create a stockpile at some point:
+```
+POST '/stockpile'
+description:
+  deletes previous stockpiles and creates a stockpile
+response:
+  {
+    "id" : __,
+    "mineral_count" : __,
+    "food_count" : __
+  }
+```
+
 You will build a POST '/bots/:id/mine' endpoint that causes a bot with specified id to mine the landscape server at specified coords.
 
 ```
