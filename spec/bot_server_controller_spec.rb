@@ -51,6 +51,7 @@ end
       @bot = bot
       post "/bots/#{@bot.id}/mine", {x: 3, y: 3}
       @bot = Bot.find(@bot.id)
+      last_response
       expect(last_response.body).to eq(@bot.to_json)
     end
   end
