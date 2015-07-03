@@ -13,9 +13,9 @@ class Bot < ActiveRecord::Base
     if x.between?(1,10) && y.between?(1,10) && self.alive?
       response = HTTParty.post("https://tieke-landscape-server.herokuapp.com/harvest?x=#{x}&y=#{y}&bot_harvesting_xp=#{self.harvesting_xp}")
       response = JSON.parse(response)
-      increment_food_harvested(response["food_harvested"])
-      add_to_stockpile("food_count", response["food_harvested"])
-      increment_h_xp(response["food_harvested"])
+      increment_food_harvested(response[1])
+      add_to_stockpile("food_count", response[1])
+      increment_h_xp(response[1])
       increment_distance_travelled(x, y)
     end
   end
@@ -25,9 +25,9 @@ class Bot < ActiveRecord::Base
     if x.between?(1,10) && y.between?(1,10) && self.alive?
       response = HTTParty.post("https://tieke-landscape-server.herokuapp.com/mine?x=#{x}&y=#{y}&bot_mining_xp=#{self.mining_xp}")
       response = JSON.parse(response)
-      increment_minerals_mined(response["minerals_mined"])
-      add_to_stockpile("mineral_count", response["minerals_mined"])
-      increment_m_xp(response["minerals_mined"])
+      increment_minerals_mined(response[1])
+      add_to_stockpile("mineral_count", response[1])
+      increment_m_xp(response[1])
       increment_distance_travelled(x, y)
     end
   end
