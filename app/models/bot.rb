@@ -38,13 +38,11 @@ class Bot < ActiveRecord::Base
   end
 
   def add_to_stockpile(resource_count, amount)
-    self.stockpile
     if resource_count == "mineral_count"
       self.stockpile.mineral_count += amount
     else
       self.stockpile.food_count += amount
     end
-    self.stockpile
     self.stockpile.save
     self.stockpile
   end
