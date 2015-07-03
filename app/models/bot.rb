@@ -68,7 +68,7 @@ class Bot < ActiveRecord::Base
   end
 
   def decrement_energy_level(x, y)
-    self.energy -= Math.sqrt(x**2 + **2)
+    self.energy -= Math.sqrt(x**2 + y**2)
     self.save
   end
 
